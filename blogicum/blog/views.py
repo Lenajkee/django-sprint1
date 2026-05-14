@@ -49,27 +49,24 @@ posts: list[dict] = [
 
 def index(request) -> HttpResponse:
     """Главная страница."""
-    template: str = 'blog/index.html'
     context: dict = {'posts': posts[::-1]}
-    return render(request, template, context)
+    return render(request, 'blog/index.html', context)
 
 
-def post_detail(request, id) -> HttpResponse:
+def post_detail(request, post_id) -> HttpResponse:
     """Отдельный пост."""
-    template: str = 'blog/detail.html'
     context: dict = {}
     for post in posts:
-        if post['id'] == id:
+        if post['id'] == post_id:
             context = {'post': post}
     if not context:
         raise HttpResponseNotFound('Страница не найдена.')
-    return render(request, template, context)
+    return render(request, 'blog/detail.html', context)
 
 
 def category_posts(request, category_slug) -> HttpResponse:
     """Категория постов."""
-    template: str = 'blog/category.html'
     context: dict = {
         'category': category_slug,
     }
-    return render(request, template, context)
+    return render(request, 'blog/category.html', context)

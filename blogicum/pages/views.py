@@ -4,11 +4,9 @@ from django.http import HttpResponse  # type: ignore[import-untyped]
 
 def about(request) -> HttpResponse:
     """Описание проекта."""
-    template: str = 'pages/about.html'
-    return render(request, template)
+    return render(request, 'pages/about.html')
 
 
 def rules(request) -> HttpResponse:
     """Правила проекта."""
-    template: str = 'pages/rules.html'
-    return render(request, template)
+    return render(request, 'pages/rules.html')
